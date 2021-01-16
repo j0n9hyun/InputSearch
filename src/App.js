@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import PhoneForm from './components/PhoneForm';
+import PhoneInfoList from './components/PhoneInfoList';
 
-function App() {
+const App = () => {
+  const [inform, setInform] = useState([]);
+  let [id, setId] = useState(0);
+  const handleCreate = (data) => {
+    setInform(inform.concat({ ...data, id: id++ }));
+    setId(id);
+    console.log(data);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <PhoneForm onCreate={handleCreate} />
+      <PhoneInfoList data={inform} />
     </div>
   );
-}
+};
 
 export default App;
