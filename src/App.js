@@ -8,12 +8,35 @@ const App = () => {
   const handleCreate = (data) => {
     setInform(inform.concat({ ...data, id: id++ }));
     setId(id);
-    console.log(data);
+    // console.log(data);
+  };
+  const handleRemove = (id) => {
+    console.log(`${id}가(이) 삭제되었습니다`);
+    setInform(inform.filter((info) => info.id !== id));
+  };
+
+  const handleUpdate = (id, data) => {
+    // console.log(id, data);
+    setInform(
+      inform.map((info) => {
+        if (info.id === id) {
+          return {
+            id,
+            ...data,
+          };
+        }
+        return info;
+      })
+    );
   };
   return (
     <div>
       <PhoneForm onCreate={handleCreate} />
-      <PhoneInfoList data={inform} />
+      <PhoneInfoList
+        data={inform}
+        onRemove={handleRemove}
+        onUpdate={handleUpdate}
+      />
     </div>
   );
 };

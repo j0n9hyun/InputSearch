@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import PhoneInfo from './PhoneInfo';
 
 const PhoneForm = ({ onCreate }) => {
   const [name, setName] = useState('');
@@ -32,9 +31,6 @@ const PhoneForm = ({ onCreate }) => {
         placeholder='번호'
       />
       <button type='submit'>등록</button>
-      {name}
-      {phone}
-      <PhoneInfo name={handleSubmit} />
     </form>
   );
 };
